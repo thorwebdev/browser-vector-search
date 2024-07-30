@@ -91,7 +91,9 @@ export default function Home() {
         </a>
       </h2>
       <p className="text-center">Items in database:</p>
-      <pre className="bg-gray-100 p-2 rounded">{JSON.stringify(content)}</pre>
+      <pre className="bg-gray-100 p-2 mb-4 rounded">
+        {JSON.stringify(content)}
+      </pre>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -109,16 +111,19 @@ export default function Home() {
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded w-full max-w-xs"
+          className="bg-blue-500 text-white p-2 mb-4 rounded w-full max-w-xs"
         >
           Semantic Search
         </button>
       </form>
 
       {ready !== null && (
-        <pre className="bg-gray-100 p-2 rounded">
-          {!ready || !result ? 'Loading...' : JSON.stringify(result, null, 2)}
-        </pre>
+        <>
+          <p className="text-center">Similarity Search results:</p>
+          <pre className="bg-gray-100 p-2 rounded">
+            {!ready || !result ? 'Loading...' : JSON.stringify(result)}
+          </pre>
+        </>
       )}
     </main>
   );
