@@ -1,20 +1,29 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // (Optional) Export as a static site
-    // See https://nextjs.org/docs/pages/building-your-application/deploying/static-exports#configuration
-    output: 'export', // Feel free to modify/remove this option
+  // (Optional) Export as a static site
+  // See https://nextjs.org/docs/pages/building-your-application/deploying/static-exports#configuration
+  output: 'export', // Feel free to modify/remove this option
 
-    // Override the default webpack configuration
-    webpack: (config) => {
-        // Ignore node-specific modules when bundling for the browser
-        // See https://webpack.js.org/configuration/resolve/#resolvealias
-        config.resolve.alias = {
-            ...config.resolve.alias,
-            "sharp$": false,
-            "onnxruntime-node$": false,
-        }
-        return config;
-    },
+  // Override the default webpack configuration
+  webpack: (config) => {
+    // Important for pglite:
+    config.resolve = {
+      ...config.resolve,
+      fallback: {
+        fs: false,
+        module: false,
+        'stream/promises': false,
+      },
+    };
+    // Ignore node-specific modules when bundling for the browser
+    // See https://webpack.js.org/configuration/resolve/#resolvealias
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      sharp$: false,
+      'onnxruntime-node$': false,
+    };
+    return config;
+  },
 };
 
 module.exports = nextConfig;
