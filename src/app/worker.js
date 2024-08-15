@@ -1,4 +1,4 @@
-import { pipeline, env } from '@xenova/transformers';
+import { pipeline, env } from '@huggingface/transformers';
 
 // Skip local model check
 env.allowLocalModels = false;
@@ -11,7 +11,11 @@ class PipelineSingleton {
 
   static async getInstance(progress_callback = null) {
     if (this.instance === null) {
-      this.instance = pipeline(this.task, this.model, { progress_callback });
+      this.instance = pipeline(this.task, this.model, {
+        progress_callback,
+        dtype: 'fp32',
+        device: !!navigator.gpu ? 'webgpu' : 'wasm',
+      });
     }
     return this.instance;
   }
