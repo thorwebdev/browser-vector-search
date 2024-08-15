@@ -1,9 +1,7 @@
-'use client';
-
-import { getDB, initSchema, countRows, seedDb, search } from '@/utils/db';
+import { getDB, initSchema, countRows, seedDb, search } from './utils/db';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-export default function Home() {
+export default function App() {
   // Keep track of the classification result and the model loading status.
   const [input, setInput] = useState('');
   const [content, setContent] = useState([]);
