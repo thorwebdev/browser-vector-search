@@ -81,13 +81,20 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center p-12">
       <h1 className="text-5xl font-bold mb-2 text-center">Transformers.js</h1>
       <h2 className="text-2xl mb-4 text-center">
-        100% in-browser Semantic Search with Transformers.js &{' '}
+        100% in-browser Semantic Search with{' '}
+        <a
+          className="underline"
+          href="https://huggingface.co/docs/transformers.js"
+        >
+          Transformers.js
+        </a>
+        {', '}
         <a className="underline" href="https://github.com/electric-sql/pglite">
           PGlite
         </a>{' '}
-        and{' '}
+        {' + '}
         <a className="underline" href="https://github.com/pgvector/pgvector">
-          pgvector
+          pgvector!
         </a>
       </h2>
       <p className="text-center">Items in database:</p>
